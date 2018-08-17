@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>spotift test</title>
+</head>
+
+<body>
+<button id="log">Log in</button>
+  
+
+</body>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+var clientID = "b93cd2a896b04db6968176145cd8537f";
+    var redirectURI = "https://www.google.com/";
+    var queryURL = "https://accounts.spotify.com/authorize/?client_id=" + clientID + "&response_type=token&redirect_uri=" + redirectURI;
+    
+    // 
+    var scopeParameter = "&scope=playlist-read-collaborative playlist-modify-public playlist-read-private playlist-modify-private user-read-currently-playing user-modify-playback-state user-read-playback-state app-remote-control streaming user-read-recently-played user-read-birthdate user-read-email user-read-private";
+
+  function authorizeSpotify() {
+
+    var clientID = "b93cd2a896b04db6968176145cd8537f";
+    var redirectURI = "file:///C:/Users/AndrewT/my-code/Projects/p1/spotfy%20authorization%20test.html";
+    // Querying the bandsintown api for the selected artist, the ?app_id parameter is required, but can equal anything
+    var queryURL = "https://accounts.spotify.com/authorize/?client_id=" + clientID + "&response_type=token&redirect_uri=" + redirectURI + scopeParameter;
+    $.ajax({
+      url: queryURL,
+      method: "GET"
+    }).then(function(response) {
+      console.log(queryURL);
+      // Printing the entire object to console
+      console.log(response);
+
+      // Constructing HTML containing the artist information
+
+      // Empty the contents of the artist-div, append the new artist content
+      });
+      parseURL();
+  }
+
+  function parseURL() {
+    console.log(window.location.href);
+    
+  }
+
+$("#log").on("click", function(){
+  window.open(queryURL);
+
+})
+
+// parseURL();
+// authorizeSpotify();
+</script>
+
+</html>
