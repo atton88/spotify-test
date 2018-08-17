@@ -1,146 +1,25 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+  <head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<head>
-  <meta charset="utf-8">
-  <title>spotift test</title>
-</head>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+  </head>
 
 <body>
-<button id="log">Log in</button>
+<button id="login">Log in</button>
   
 
 </body>
 
+<script src="https://sdk.scdn.co/spotify-player.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script>
-  $(document).ready(function() {
-    var token = "BQA2wzmOXlMAlcRkhIF0UxFBrSYF8C5N8p6zJBXfJP6T8AZSmp7mHjKoby9cP-cEvZtP_XUFwM0maPIT1SCahM-VIzuzM8_ZYLtsPT4W3BV4f34fDjGMXdWwTWnFUBiS-RrRUmavyD0jvg";
-    var clientID = "b93cd2a896b04db6968176145cd8537f";
-    var redirectURI = "https://atton88.github.io/spotify-test/";
-    var scopeParameter = "&scope=playlist-read-collaborative playlist-modify-public playlist-read-private playlist-modify-private user-read-currently-playing user-modify-playback-state user-read-playback-state app-remote-control streaming user-read-recently-played user-read-birthdate user-read-email user-read-private";
+<script src="authorization.js"></script>
 
-    var queryURL = "https://accounts.spotify.com/authorize/?client_id=" + clientID + "&response_type=token&redirect_uri=" + redirectURI + scopeParameter;
-    
-    // 
-
-
-
-
-    var userID = "";
-    console.log(window.location.href);
-    var teststr = "https://atton88.github.io/spotify-test/#access_token=BQAdcq499rKKgiIIMgbS4bercAR_HZWgsAIiqg1q4hb2DUHbKgqY_CKnfNvayC83gPsjiBDmE3rSVQQzBZ5tSW66eiP7yT9J2ca9UIqK2rsB_HP5DOqOfWohieiA6liFvfHfLkhZeOMs5g&token_type=Bearer&expires_in=3600";
-  if (window.location.href.includes("access_token")) {
-      console.log("test");
-  }
-        // if logged in 
-        
-  // function authorizeSpotify() {
-
-  //   var clientID = "b93cd2a896b04db6968176145cd8537f";
-  //   var redirectURI = "https://atton88.github.io/spotify-test/";
-  //   // Querying the bandsintown api for the selected artist, the ?app_id parameter is required, but can equal anything
-  //   var queryURL = "https://accounts.spotify.com/authorize/?client_id=" + clientID + "&response_type=token&redirect_uri=" + redirectURI + scopeParameter;
-  //   $.ajax({
-  //     url: queryURL,
-  //     method: "GET"
-  //   }).then(function(response) {
-  //     console.log(queryURL);
-  //     // Printing the entire object to console
-  //     console.log(response);
-
-  //     // Constructing HTML containing the artist information
-
-  //     // Empty the contents of the artist-div, append the new artist content
-  //     });
-  //     parseURL();
-  // }
-
-  function parseURL() {
-    console.log(window.location.href);
-  }
-
-  function getUserInfo () {
-    // get user name
-    // token = "BQDvxmzaBtdaGBb1QsHLONxwqPF4Dqegli7QhRkshpu9-PwkY1XCjgCuPUJgbzcHgffyPd3ODinN58PSDTLLVYo3byI7Fn2BVeS86rlsuk6hvcQ_B2kkDGOHcWPEV7TMKKHOwzny20hNjQ";
-    queryURL = "https://api.spotify.com/v1/me";
-    user = "124009025";
-
-    $.ajax({
-      url: queryURL,
-
-      // type: 'POST',
-      // contentType: 'application/json',
-      // data: JSON.stringify(dataObj),
-      // dataType: 'json',
-      // processData: false,
-      headers: {
-          'Authorization' : 'Bearer ' + token,
-      },
-      // success: function(data) {
-      //     console.log(data);
-      // },
-      // error: function() {
-      //   console.log("It failed");
-      // },
-            method: "GET"
-          }).then(function(response) {
-            console.log("response");
-            userID = response.id;  //get user ID
-            console.log(response);
-            console.log(userID);
-          })
-    
-          return userID;
-  }
-
-$("#log").on("click", function(){
-  window.open(queryURL);
-
-  // token = "BQDv0ZNta_6rIm4P_8En6e5N0aNIBTV2u0mlDufdI0OFO7hZaN-jfs4nDYP-q4VXnOFqXBFN7-hzVCnMCfJCg4VpFWZj4jiLKmSJRLclCq9J7r9iwKmPyWdDQUlKAmHCpyuDlN2idGoreg";
-})
-
-// function createPlaylist(str) {
-
-//   queryURL = "https://api.spotify.com/v1/users/" + "124009025" + "/playlists";
-
-//   $.ajax({
-//     type: 'POST',
-
-//       url: queryURL,
-      
-//       contentType: 'application/json',
-//       data: {
-//             "name": "test playlist",
-//             "description": "New playlist description",
-//             "public": false},
-//       dataType: 'json',
-//       // processData: false,
-//       headers: {
-//           'Authorization' : 'Bearer ' + "BQA2wzmOXlMAlcRkhIF0UxFBrSYF8C5N8p6zJBXfJP6T8AZSmp7mHjKoby9cP-cEvZtP_XUFwM0maPIT1SCahM-VIzuzM8_ZYLtsPT4W3BV4f34fDjGMXdWwTWnFUBiS-RrRUmavyD0jvg",
-//       },
-//       success: function(data) {
-//         console.log("It worked");
-
-//         console.log(data);
-//       },
-//       error: function() {
-//         console.log("It failed");
-//       },
-//             method: "POST"
-//           }).then(function(response) {
-
-// })
-
-// }
-// authorizeSpotify();
-
-// getUserInfo();
-// createPlaylist("str");
-
-// parseURL();
-
-})
-</script>
-
+<script src="spotify.js"></script>
+<script src="genius.js"></script>
 </html>
