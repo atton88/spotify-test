@@ -1,4 +1,4 @@
-$(document).ready(function() {
+function authorizeSpotify() {
     var token = "";
     var userID = "";
     var clientID = "b93cd2a896b04db6968176145cd8537f";
@@ -8,12 +8,12 @@ $(document).ready(function() {
     
     console.log("current url: " + window.location.href);
     // var teststr = "https://atton88.github.io/spotify-test/#access_token=BQAdcq499rKKgiIIMgbS4bercAR_HZWgsAIiqg1q4hb2DUHbKgqY_CKnfNvayC83gPsjiBDmE3rSVQQzBZ5tSW66eiP7yT9J2ca9UIqK2rsB_HP5DOqOfWohieiA6liFvfHfLkhZeOMs5g&token_type=Bearer&expires_in=3600";
-  
-  if (window.location.href.includes("access_token")) {
+    window.open(queryURL);
+    if (window.location.href.includes("access_token")) {
     token = parseURL(window.location.href);
     console.log("parsed token: " + token);
   }
-
+}
   //parse url, returns token
   function parseURL(str) {
     console.log(str);
@@ -24,28 +24,28 @@ $(document).ready(function() {
   }
 
 function getUserInfo () {
-queryURL = "https://api.spotify.com/v1/me";
-user = "124009025";
+  queryURL = "https://api.spotify.com/v1/me";
+  user = "124009025";
 
-$.ajax({
-    url: queryURL,
-    headers: {
-        'Authorization' : 'Bearer ' + token,
-    },
-        method: "GET"
-        }).then(function(response) {
-        console.log("response");
-        userID = response.id;  //get user ID
-        console.log(response);
-        console.log(userID);
-        })
-        return userID;
-}
+  $.ajax({
+      url: queryURL,
+      headers: {
+          'Authorization' : 'Bearer ' + token,
+      },
+          method: "GET"
+          }).then(function(response) {
+          console.log("response");
+          userID = response.id;  //get user ID
+          console.log(response);
+          console.log(userID);
+          })
+          return userID;
+  }
 
 // authorize spotify
-$("#login").on("click", function(){
-  window.open(queryURL);
+$("#spotifyLoginBtn").on("click", function(){
+  authorizeSpotify();
 })
 
-})
+
 

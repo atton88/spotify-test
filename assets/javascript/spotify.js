@@ -1,9 +1,12 @@
 window.onSpotifyWebPlaybackSDKReady = () => {
+    var token = parseURL(window.location.href);
+    console.log("parsed token: " + token);
     console.log(token);
     const player = new Spotify.Player({
     name: 'Test Player',
     getOAuthToken: cb => { cb(token); }
 });
+
 
 // Error handling
 player.addListener('initialization_error', ({ message }) => { console.error(message); });
@@ -40,3 +43,12 @@ player.addListener('player_state_changed', state => { console.log(state); });
     });
 
 };
+
+  //parse url, returns token
+  function parseURL(str) {
+    console.log(str);
+    str = str.split("#access_token=");
+    str = str[1].split("&token_type");
+   console.log(str[0]);
+   return str[0];
+  }
