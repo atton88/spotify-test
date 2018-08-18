@@ -8,11 +8,11 @@ function authorizeSpotify() {
     
     console.log("current url: " + window.location.href);
     // var teststr = "https://atton88.github.io/spotify-test/#access_token=BQAdcq499rKKgiIIMgbS4bercAR_HZWgsAIiqg1q4hb2DUHbKgqY_CKnfNvayC83gPsjiBDmE3rSVQQzBZ5tSW66eiP7yT9J2ca9UIqK2rsB_HP5DOqOfWohieiA6liFvfHfLkhZeOMs5g&token_type=Bearer&expires_in=3600";
-    window.open(queryURL);
-    if (window.location.href.includes("access_token")) {
-    token = parseURL(window.location.href);
-    console.log("parsed token: " + token);
-  }
+    window.open(queryURL,"_self");
+  //   if (window.location.href.includes("access_token")) {
+  //   token = parseURL(window.location.href);
+  //   console.log("parsed token: " + token);
+  // }
 }
   //parse url, returns token
   function parseURL(str) {
