@@ -1,3 +1,11 @@
+var isHost = false;
+var token = "";
+
+// if URL has token, user is host
+if (window.location.href.includes("access_token")) {
+    var isHost = true;
+}
+
 // Initialize Firebase
 var config = {
     apiKey: "AIzaSyC1CNzGvk1-txN23py3SyoVRrLmWbpbdvY",
@@ -9,12 +17,17 @@ var config = {
 };
 firebase.initializeApp(config);
 var database = firebase.database();
+console.log("get item: " + localStorage.playlistName);
 
 // Initialize Spotify SDK and parse token from url
 window.onSpotifyWebPlaybackSDKReady = () => {
-    var token = parseURL(window.location.href);
-    console.log("parsed token: " + token);
-    console.log(token);
+    if (isHost) {
+        token = parseURL(window.location.href);
+        console.log("parsed token: " + token);
+    }
+    // } else {
+    //     token = 
+    // }
     const player = new Spotify.Player({
     name: 'Test Player',
     getOAuthToken: cb => { cb(token); }
@@ -53,7 +66,6 @@ $('#forward').on("click", function() {
 $('#back').on("click", function() {
     player.nextTrack();
 });
-
 };
 
 //parse url, returns token

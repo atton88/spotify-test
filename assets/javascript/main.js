@@ -1,3 +1,15 @@
+// Initialize Firebase
+var config = {
+  apiKey: "AIzaSyC1CNzGvk1-txN23py3SyoVRrLmWbpbdvY",
+  authDomain: "jukelab-e2948.firebaseapp.com",
+  databaseURL: "https://jukelab-e2948.firebaseio.com",
+  projectId: "jukelab-e2948",
+  storageBucket: "jukelab-e2948.appspot.com",
+  messagingSenderId: "607552764798"
+};
+firebase.initializeApp(config);
+var database = firebase.database();
+localStorage.test = "test";
 
 
 function authorizeSpotify() {
@@ -13,13 +25,17 @@ function authorizeSpotify() {
     window.open(queryURL,"_self");
 }
 
-// authorize spotify
+// authorize spotify and save playlist name to firebase
 $("#spotifyLoginBtn").on("click", function(){
+  console.log($("#newPlaylistName").val());
+    localStorage.playlistName = $("#newPlaylistName").val();
+  // database.ref().push(newPlaylist);
   authorizeSpotify();
 })
 
+// Populate current playlists
+// database.ref().on("child_added", function(childSnapshot) {
 
 
 
-
-
+// })
