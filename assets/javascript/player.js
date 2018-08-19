@@ -108,4 +108,3 @@ function getUserInfo () {
             })
             return userID;
     }
-
