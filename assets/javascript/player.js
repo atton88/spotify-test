@@ -1,5 +1,6 @@
 var isHost = false;
 var token = "";
+var roomName;
 
 // if URL has token, user is host
 if (window.location.href.includes("access_token")) {
@@ -17,6 +18,8 @@ var config = {
 };
 firebase.initializeApp(config);
 var database = firebase.database();
+
+// check localstorage for name
 console.log("get item: " + localStorage.playlistName);
 
 // Initialize Spotify SDK and parse token from url
@@ -24,8 +27,15 @@ window.onSpotifyWebPlaybackSDKReady = () => {
     if (isHost) {
         token = parseURL(window.location.href);
         console.log("parsed token: " + token);
+        roomName = localStorage.playlistName;
+        var newPlaylist = {
+            name: roomName,
+            token: token
+        }
+        database.ref().push(newPlaylist);
     }
     // } else {
+    //     roomName = 
     //     token = 
     // }
     const player = new Spotify.Player({
