@@ -34,7 +34,6 @@ $("#spotifyLoginBtn").on("click", function(){
 // Populate current playlists
 database.ref().on("child_added", function(roomObj) {
   var name = roomObj.val().name;
-  var token = roomObj.val().token;
 
   var tempDiv2 = $("<div>").attr("class", "uk-card uk-card-default uk-card-body uk-padding-small");
   tempDiv2.html('<img class="roundPlaylistImg" src="temp-images/drake.jpg" alt="">' + "<p>" + name + "</p>")
