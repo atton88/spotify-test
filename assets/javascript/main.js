@@ -9,8 +9,6 @@ var config = {
 };
 firebase.initializeApp(config);
 var database = firebase.database();
-localStorage.test = "test";
-
 
 function authorizeSpotify() {
     var token = "";
