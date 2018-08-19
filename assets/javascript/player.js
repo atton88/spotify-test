@@ -33,6 +33,7 @@ window.onSpotifyWebPlaybackSDKReady = () => {
             token: token
         }
         database.ref().push(newPlaylist);
+        console.log(newPlaylist);
     }
     // } else {
     //     roomName = 
