@@ -31,6 +31,7 @@ $("#spotifyLoginBtn").on("click", function(){
   authorizeSpotify();
 })
 
+
 // Populate current playlists
 database.ref().on("child_added", function(roomObj) {
   var name = roomObj.val().name;
