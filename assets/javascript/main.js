@@ -36,13 +36,23 @@ $("#spotifyLoginBtn").on("click", function(){
 database.ref().on("child_added", function(roomObj) {
   var name = roomObj.val().name;
 
-  var tempDiv2 = $("<div>").attr("class", "uk-card uk-card-default uk-card-body uk-padding-small");
+  var tempDiv2 = $("<div>").attr("class", "uk-card uk-card-default uk-card-body uk-padding-small playlistRoom");
   tempDiv2.html('<img class="roundPlaylistImg" src="temp-images/drake.jpg" alt="">' + "<p>" + name + "</p>")
-  
-  var tempDiv = $("<a>").attr("href", "#");
+
+  $(tempDiv2).val(name);
+  console.log("set val " + $(tempDiv2).val());
+  console.log($(tempDiv2));
+
+  var tempDiv = $("<a>").attr("href", "player.html");
     tempDiv.html(
       $("<div>").html(tempDiv2)
     )
-  
+
+
   $("#playlistGrid").append(tempDiv);
+})
+
+$("#playlistGrid").on("click", ".playlistRoom", function(){
+  console.log($(this).val());
+  localStorage.playlistName = $(this).val();
 })

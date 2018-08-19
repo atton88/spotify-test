@@ -42,7 +42,6 @@ player.addListener('player_state_changed', state => { console.log(state); });
     $('#back').on("click", function() {
         player.nextTrack();
     });
-
 };
 
 $('#search').on("click", function() {

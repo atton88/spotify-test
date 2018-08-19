@@ -1,12 +1,13 @@
 //andrew
 var isHost = false;
 var token = "";
-var roomName;
+var roomName = localStorage.playlistName;
+console.log(roomName);
 
 // if URL has token, user is host
 if (window.location.href.includes("access_token")) {
     var isHost = true;
-}
+} else 
 
 // Initialize Firebase
 var config = {
@@ -21,14 +22,15 @@ firebase.initializeApp(config);
 var database = firebase.database();
 
 // check localstorage for name
-console.log("get item: " + localStorage.playlistName);
+console.log("get item: " + roomName);
 
+///////////////////////////////////////////////////
 // Initialize Spotify SDK and parse token from url
 window.onSpotifyWebPlaybackSDKReady = () => {
     if (isHost) {
         token = parseURL(window.location.href);
         console.log("parsed token: " + token);
-        roomName = localStorage.playlistName;
+        roomName = roomName;
         var newPlaylist = {
             name: roomName,
             token: token
@@ -79,6 +81,7 @@ $('#back').on("click", function() {
     player.nextTrack();
 });
 };
+//////////////////////////////////////////////////////////////
 
 //parse url, returns token
 function parseURL(str) {
