@@ -36,23 +36,18 @@ $("#spotifyLoginBtn").on("click", function(){
   // check if name is taken
   database.ref().child(userId).once('value').then(function(snapshot) {
     console.log(snapshot.val()); // show current rooms obj
+    // if taken, do nothing
     if (snapshot.val() !== null) {
-      alert('name ' + userId + ' taken!');
+      alert('name ' + userId + ' taken! Choose a different name.');
       return;
     }
+    // if available, authorize and create
     else {
-      alert('name ' + userId + ' available');
       localStorage.playlistName = $("#newPlaylistName").val();
       authorizeSpotify();
-
     }
-
-
-
   });
 })
-
-
 
 // Populate current playlists
 database.ref().on("child_added", function(roomObj) {
