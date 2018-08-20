@@ -1,14 +1,3 @@
-//andrew
-var isHost = false;
-var token = "";
-var roomName = localStorage.playlistName;
-console.log(roomName);
-
-// if URL has token, user is host
-if (window.location.href.includes("access_token")) {
-    var isHost = true;
-} else 
-
 // Initialize Firebase
 var config = {
     apiKey: "AIzaSyC1CNzGvk1-txN23py3SyoVRrLmWbpbdvY",
@@ -21,23 +10,43 @@ var config = {
 firebase.initializeApp(config);
 var database = firebase.database();
 
+// Declare variables
+var isHost = false;
+var token = "";
+var roomName = localStorage.playlistName;
+console.log(roomName);
+
+// if URL has token, user is host
+if (window.location.href.includes("access_token")) {
+    var isHost = true;
+    token = parseURL(window.location.href);
+    console.log("parsed token: " + token);
+    roomName = roomName;
+    var newPlaylist = {
+        name: roomName,
+        token: token
+    }
+
+    database.ref().child(roomName).set(newPlaylist);
+
+
+    // database.ref().push(newPlaylist);
+    console.log(newPlaylist);
+} else {
+    //search firebase
+    //get token
+}
+
+
 // check localstorage for name
 console.log("get item: " + roomName);
 
 ///////////////////////////////////////////////////
 // Initialize Spotify SDK and parse token from url
 window.onSpotifyWebPlaybackSDKReady = () => {
-    if (isHost) {
-        token = parseURL(window.location.href);
-        console.log("parsed token: " + token);
-        roomName = roomName;
-        var newPlaylist = {
-            name: roomName,
-            token: token
-        }
-        database.ref().push(newPlaylist);
-        console.log(newPlaylist);
-    }
+    // if (isHost) {
+
+    // }
     // } else {
     //     roomName = 
     //     token = 
@@ -105,9 +114,10 @@ function getUserInfo () {
             method: "GET"
             }).then(function(response) {
             console.log("response");
-            userID = response.id;  //get user ID
+            var userID = response.id;  //get user ID
             console.log(response);
             console.log(userID);
             })
             return userID;
     }
+

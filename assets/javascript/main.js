@@ -26,9 +26,16 @@ function authorizeSpotify() {
 // authorize spotify and save playlist name to firebase
 $("#spotifyLoginBtn").on("click", function(){
   console.log($("#newPlaylistName").val());
+
+  database.ref().once('value').then(function(snapshot) {
+    console.log(snapshot.val()); // show current rooms obj
+    console.log(database.ref().child().orderByChild("name").equalTo($("#newPlaylistName").val()).exists());
+  });
+
+
     localStorage.playlistName = $("#newPlaylistName").val();
   // database.ref().push(newPlaylist);
-  authorizeSpotify();
+  // authorizeSpotify();
 })
 
 
