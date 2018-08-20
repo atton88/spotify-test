@@ -19,7 +19,7 @@ console.log(roomName);
 // Change room name
 $("#titleText").text(roomName);
 
-// if URL has token, user is host
+// if user is host, make new playlist and add key to database
 if (window.location.href.includes("access_token")) {
     var isHost = true;
     token = parseURL(window.location.href);
@@ -29,18 +29,18 @@ if (window.location.href.includes("access_token")) {
         name: roomName,
         token: token
     }
-
     database.ref().child(roomName).set(newPlaylist);
-
 
     // database.ref().push(newPlaylist);
     console.log(newPlaylist);
 } else {
-    //search firebase
-    //get token
+    // if guest, search firebase, get authentication token
+    database.ref().child(roomName).once('value').then(function(snapshot) {
+        console.log("test", snapshot.val());
+        console.log("test", snapshot.val().token);
+        token = snapshot.val().token;
+})
 }
-
-
 // check localstorage for name
 console.log("get item: " + roomName);
 
