@@ -35,7 +35,7 @@ $("#spotifyLoginBtn").on("click", function(){
 
     localStorage.playlistName = $("#newPlaylistName").val();
   // database.ref().push(newPlaylist);
-  // authorizeSpotify();
+  authorizeSpotify();
 })
 
 
