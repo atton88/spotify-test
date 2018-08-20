@@ -16,6 +16,9 @@ var token = "";
 var roomName = localStorage.playlistName;
 console.log(roomName);
 
+// Change room name
+$("#titleText").text(roomName);
+
 // if URL has token, user is host
 if (window.location.href.includes("access_token")) {
     var isHost = true;
