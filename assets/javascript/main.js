@@ -29,7 +29,6 @@ $("#spotifyLoginBtn").on("click", function(){
 
   database.ref().once('value').then(function(snapshot) {
     console.log(snapshot.val()); // show current rooms obj
-    console.log(database.ref().child().orderByChild("name").equalTo($("#newPlaylistName").val()).exists());
   });
 
 
