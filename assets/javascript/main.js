@@ -29,12 +29,14 @@ $("#spotifyLoginBtn").on("click", function(){
 
   database.ref().once('value').then(function(snapshot) {
     console.log(snapshot.val()); // show current rooms obj
+
+
   });
 
 
     localStorage.playlistName = $("#newPlaylistName").val();
   // database.ref().push(newPlaylist);
-  authorizeSpotify();
+    authorizeSpotify();
 })
 
 
