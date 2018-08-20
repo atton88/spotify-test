@@ -26,18 +26,32 @@ function authorizeSpotify() {
 // authorize spotify and save playlist name to firebase
 $("#spotifyLoginBtn").on("click", function(){
   console.log($("#newPlaylistName").val());
+  var userId = $("#newPlaylistName").val();
+  // playlist cant be blank, replace with form validation
+  if (!$("#newPlaylistName").val()) {
+    alert("Enter Playlist Name"); 
+    return;
+  }
 
-  database.ref().once('value').then(function(snapshot) {
+  // check if name is taken
+  database.ref().child(userId).once('value').then(function(snapshot) {
     console.log(snapshot.val()); // show current rooms obj
+    if (snapshot.val() !== null) {
+      alert('name ' + userId + ' taken!');
+      return;
+    }
+    else {
+      alert('name ' + userId + ' available');
+      localStorage.playlistName = $("#newPlaylistName").val();
+      authorizeSpotify();
+
+    }
+
 
 
   });
-
-
-    localStorage.playlistName = $("#newPlaylistName").val();
-  // database.ref().push(newPlaylist);
-    authorizeSpotify();
 })
+
 
 
 // Populate current playlists
